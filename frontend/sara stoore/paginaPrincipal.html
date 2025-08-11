@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Sara Store</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background-color: #f8f9fa;
+        font-family: "Poppins", sans-serif;
+      }
+
+      .product-img {
+        height: 250px;
+        object-fit: cover;
+        border-radius: 0.5rem;
+      }
+
+      .btn-carrito {
+        background-color: #4caf50;
+        color: white;
+        font-weight: bold;
+        transition: transform 0.2s ease, background-color 0.2s ease;
+      }
+
+      .btn-carrito:hover {
+        background-color: #388e3c;
+        transform: scale(1.03);
+      }
+
+      .card {
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        border-radius: 1rem;
+      }
+
+      .card:hover {
+        transform: scale(1.02);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .icono-nav i {
+        font-size: 1.5rem;
+      }
+
+      .icono-nav span {
+        display: block;
+        font-size: 0.9rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div style="background-color: #212529; color: white; padding: 10px 20px">
+      <h2 class="m-0">Sara Store</h2>
+    </div>
+
+    <div class="container py-4">
+      <!-- Encabezado -->
+      <div
+        class="d-flex flex-wrap justify-content-between align-items-center mb-4"
+      >
+        <img src="logo.webp" alt="Sara Store Logo" style="height: 60px" />
+
+        <div class="input-group w-50 my-2 my-md-0">
+          <input
+            type="text"
+            id="buscadorInput"
+            class="form-control"
+            placeholder="camisetas para hombre"
+          />
+          <button class="btn btn-dark" id="btnBuscar"><i class="bi bi-search"></i></button>
+        </div>
+
+        <div class="d-flex gap-4">
+          <div class="text-center icono-nav">
+            <i class="bi bi-house-door-fill"></i>
+            <span>INICIO</span>
+          </div>
+          <a
+            href="carrito-compras.html"
+            style="text-decoration: none; color: inherit"
+          >
+            <div class="text-center icono-nav position-relative">
+              <i class="bi bi-cart-fill"></i>
+              <span>CARRITO</span>
+              <span
+                id="carrito-count"
+                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+              >
+                0
+              </span>
+            </div>
+          </a>
+          <div class="text-center icono-nav">
+            <i class="bi bi-person-fill"></i>
+            <span>TU</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Productos -->
+      <div id="contenedorProductos">
+        <h4 id="tituloSeccion">Nuestros productos</h4>
+        <div class="row g-4" id="productosContainer">
+        <div class="col-md-3">
+          <div class="card h-100 p-2">
+            <img
+              src="camiseta_verde.jpg"
+              class="card-img-top product-img"
+              alt="Camiseta verde"
+            />
+            <div class="card-body">
+              <h6 class="card-title fw-bold">Camiseta cuello redondo verde</h6>
+              <p class="card-text">
+                Tallas:
+                <select
+                  class="form-select talla-select"
+                  style="width: 90px; display: inline-block"
+                >
+                  <option value="M">M</option>
+                  <option value="L">L</option>
+                  <option value="XL">XL</option></select
+                ><br /><strong>Precio:</strong> $90.000
+              </p>
+              <button
+                class="btn btn-carrito w-100 add-to-cart"
+                data-producto="Camiseta cuello redondo verde"
+                data-precio="90000"
+              >
+                Añadir al carrito
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="card h-100 p-2">
+            <img
+              src="camiseta_azul.webp"
+              class="card-img-top product-img"
+              alt="Camiseta azul"
+            />
+            <div class="card-body">
+              <h6 class="card-title fw-bold">
+                Camiseta cuello redondo azul rey
+              </h6>
+              <p class="card-text">
+                Tallas:
+                <select
+                  class="form-select talla-select"
+                  style="width: 90px; display: inline-block"
+                >
+                  <option value="M">M</option>
+                  <option value="L">L</option>
+                  <option value="XL">XL</option></select
+                ><br /><strong>Precio:</strong> $90.000
+              </p>
+              <button
+                class="btn btn-carrito w-100 add-to-cart"
+                data-producto="Camiseta azul rey"
+                data-precio="90000"
+              >
+                Añadir al carrito
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="card h-100 p-2">
+            <img
+              src="camiseta_polo.webp"
+              class="card-img-top product-img"
+              alt="Camiseta polo"
+            />
+            <div class="card-body">
+              <h6 class="card-title fw-bold">Camiseta tipo polo <br />negra</h6>
+              <p class="card-text">
+                Tallas:
+                <select
+                  class="form-select talla-select"
+                  style="width: 90px; display: inline-block"
+                >
+                  <option value="M">M</option>
+                  <option value="L">L</option>
+                  <option value="XL">XL</option></select
+                ><br /><strong>Precio:</strong> $120.000
+              </p>
+              <button
+                class="btn btn-carrito w-100 add-to-cart"
+                data-producto="Camiseta tipo polo negra"
+                data-precio="120000"
+              >
+                Añadir al carrito
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Producto 4 -->
+        <div class="col-md-3">
+          <div class="card h-100 p-2">
+            <img
+              src="camiseta_cuello_v.jpg"
+              class="card-img-top product-img"
+              alt="Camiseta cuello v"
+            />
+            <div class="card-body">
+              <h6 class="card-title fw-bold">Camiseta cuello v agua marina</h6>
+              <p class="card-text">
+                Tallas:
+                <select
+                  class="form-select talla-select"
+                  style="width: 90px; display: inline-block"
+                >
+                  <option value="M">M</option>
+                  <option value="L">L</option>
+                  <option value="XL">XL</option></select
+                ><br /><strong>Precio:</strong> $75.000
+              </p>
+              <button
+                class="btn btn-carrito w-100 add-to-cart"
+                data-producto="Camiseta cuello v agua marina"
+                data-precio="75000"
+              >
+                Añadir al carrito
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Script para manejar carrito -->
+    <script>
+      // Productos por defecto para mostrar cuando no hay búsqueda
+      const productosDefault = [
+        {
+          nombre: "Camiseta cuello redondo verde",
+          precio: 90000,
+          imagen: "camiseta_verde.jpg",
+          tallas: ["M", "L", "XL"]
+        },
+        {
+          nombre: "Camiseta azul rey",
+          precio: 90000,
+          imagen: "camiseta_azul.webp",
+          tallas: ["M", "L", "XL"]
+        },
+        {
+          nombre: "Camiseta tipo polo negra",
+          precio: 120000,
+          imagen: "camiseta_polo.webp",
+          tallas: ["M", "L", "XL"]
+        },
+        {
+          nombre: "Camiseta cuello v agua marina",
+          precio: 75000,
+          imagen: "camiseta_cuello_v.jpg",
+          tallas: ["M", "L", "XL"]
+        }
+      ];
+
+      function actualizarCarrito() {
+        const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+        document.getElementById("carrito-count").textContent = carrito.length;
+      }
+
+      function agregarAlCarrito(nombre, precio, imagen, talla) {
+        let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+        // Busca si ya existe el producto con la misma talla
+        const idx = carrito.findIndex(
+          (p) => p.nombre === nombre && p.talla === talla
+        );
+        if (idx !== -1) {
+          // Si existe, suma la cantidad
+          carrito[idx].cantidad = (carrito[idx].cantidad || 1) + 1;
+        } else {
+          carrito.push({ nombre, precio, imagen, talla, cantidad: 1 });
+        }
+        localStorage.setItem("carrito", JSON.stringify(carrito));
+        actualizarCarrito && actualizarCarrito();
+      }
+
+      // Función para crear el HTML de un producto
+      function crearProductoHTML(producto) {
+        const tallasOptions = producto.tallas.map(talla => 
+          `<option value="${talla}">${talla}</option>`
+        ).join('');
+        
+        // Mostrar información de stock si está disponible
+        const stockInfo = producto.stock !== undefined ? 
+          `<small class="text-muted">Stock: ${producto.stock} unidades</small><br />` : '';
+        
+        // Mostrar descripción si está disponible
+        const descripcionInfo = producto.descripcion ? 
+          `<small class="text-muted">${producto.descripcion}</small><br />` : '';
+        
+        return `
+          <div class="col-md-3">
+            <div class="card h-100 p-2">
+              <img
+                src="${producto.imagen}"
+                class="card-img-top product-img"
+                alt="${producto.nombre}"
+                onerror="this.src='https://via.placeholder.com/250x250?text=Sin+Imagen'"
+              />
+              <div class="card-body">
+                <h6 class="card-title fw-bold">${producto.nombre}</h6>
+                <p class="card-text">
+                  ${descripcionInfo}
+                  Tallas:
+                  <select
+                    class="form-select talla-select"
+                    style="width: 90px; display: inline-block"
+                  >
+                    ${tallasOptions}
+                  </select><br />
+                  <strong>Precio:</strong> $${producto.precio.toLocaleString()}<br />
+                  ${stockInfo}
+                </p>
+                <button
+                  class="btn btn-carrito w-100 add-to-cart"
+                  data-producto="${producto.nombre}"
+                  data-precio="${producto.precio}"
+                  data-id="${producto.idProducto || ''}"
+                  ${producto.stock === 0 ? 'disabled' : ''}
+                >
+                  ${producto.stock === 0 ? 'Sin Stock' : 'Añadir al carrito'}
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      // Función para renderizar productos
+      function renderizarProductos(productos) {
+        const container = document.getElementById('productosContainer');
+        if (!container) {
+          // Si no existe el container, crear uno
+          const newContainer = document.createElement('div');
+          newContainer.id = 'productosContainer';
+          newContainer.className = 'row g-4';
+          
+          const productosSection = document.querySelector('.row.g-4') || document.querySelector('.container').children[1];
+          productosSection.replaceWith(newContainer);
+        }
+        
+        const productosContainer = document.getElementById('productosContainer');
+        productosContainer.innerHTML = productos.map(producto => crearProductoHTML(producto)).join('');
+        
+        // Reagregar event listeners para los nuevos botones
+        agregarEventListenersCarrito();
+      }
+
+      // Función para agregar event listeners a los botones del carrito
+      function agregarEventListenersCarrito() {
+        const botones = document.querySelectorAll(".add-to-cart");
+        botones.forEach((boton) => {
+          boton.addEventListener("click", () => {
+            const nombre = boton.getAttribute("data-producto");
+            const precio = boton.getAttribute("data-precio");
+            const imagen = boton
+              .closest(".card")
+              .querySelector("img")
+              .getAttribute("src");
+            const talla =
+              boton.closest(".card").querySelector(".talla-select")?.value ||
+              "";
+            agregarAlCarrito(nombre, precio, imagen, talla);
+          });
+        });
+      }
+
+      // Función para buscar producto en el backend
+      async function buscarProducto(nombreProducto) {
+        try {
+          console.log('Buscando producto:', nombreProducto);
+          
+          const response = await fetch(`http://localhost:8080/api/productos/${encodeURIComponent(nombreProducto)}`, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+            }
+          });
+          
+          console.log('Respuesta del servidor:', response.status);
+          
+          if (response.ok) {
+            const producto = await response.json();
+            console.log('Producto encontrado:', producto);
+            
+            const productoFormateado = {
+              nombre: producto.nombre || nombreProducto,
+              precio: producto.precio || 0,
+              imagen: producto.imagen || 'placeholder.jpg',
+              tallas: ["M", "L", "XL"],
+              descripcion: producto.descripcion || '',
+              stock: producto.stock || 0,
+              idProducto: producto.idProducto,
+              idCategoria: producto.idCategoria
+            };
+            
+            return [productoFormateado];
+          } else if (response.status === 404) {
+            console.log('Producto no encontrado');
+            return [];
+          } else {
+            // Intentar obtener el mensaje de error del backend
+            let errorMessage = 'Error desconocido';
+            try {
+              const errorData = await response.json();
+              errorMessage = errorData.message || errorData.error || 'Error en la búsqueda';
+            } catch (e) {
+              // Si no es JSON, intentar obtener como texto
+              try {
+                errorMessage = await response.text() || 'Error en la búsqueda';
+              } catch (e2) {
+                errorMessage = 'Error en la búsqueda';
+              }
+            }
+            console.error('Error del servidor:', errorMessage);
+            throw new Error(errorMessage);
+          }
+        } catch (error) {
+          console.error('Error de conexión:', error);
+          throw error;
+        }
+      }
+
+      // Función para manejar la búsqueda
+      async function manejarBusqueda() {
+        const termino = document.getElementById('buscadorInput').value.trim();
+        const tituloSeccion = document.getElementById('tituloSeccion');
+        
+        if (!termino) {
+          if (tituloSeccion) tituloSeccion.textContent = 'Nuestros productos';
+          renderizarProductos(productosDefault);
+          return;
+        }
+        
+        // Cambiar el botón mientras se busca
+        const btnBuscar = document.getElementById('btnBuscar');
+        const originalHTML = btnBuscar.innerHTML;
+        btnBuscar.innerHTML = '<i class="bi bi-hourglass-split"></i>';
+        btnBuscar.disabled = true;
+        
+        try {
+          const productos = await buscarProducto(termino);
+          
+          if (productos.length > 0) {
+            if (tituloSeccion) tituloSeccion.textContent = `Resultados para: "${termino}"`;
+            renderizarProductos(productos);
+          } else {
+            if (tituloSeccion) tituloSeccion.textContent = `No se encontraron resultados para: "${termino}"`;
+            document.getElementById('productosContainer').innerHTML = `
+              <div class="col-12 text-center">
+                <div class="alert alert-info">
+                  <i class="bi bi-search"></i>
+                  <h5>No se encontraron productos</h5>
+                  <p>Intenta con otro término de búsqueda o <a href="#" onclick="mostrarTodosLosProductos()">ver todos los productos</a></p>
+                </div>
+              </div>
+            `;
+          }
+        } catch (error) {
+          console.error('Error capturado:', error.message);
+          
+          // Verificar si es el mensaje específico del backend
+          if (error.message.includes('Producto no encontrado')) {
+            if (tituloSeccion) tituloSeccion.textContent = `No se encontraron resultados para: "${termino}"`;
+            document.getElementById('productosContainer').innerHTML = `
+              <div class="col-12 text-center">
+                <div class="alert alert-warning">
+                  <i class="bi bi-exclamation-circle"></i>
+                  <h5>Producto no encontrado</h5>
+                  <p><strong>"${termino}"</strong> no está disponible en nuestro catálogo.</p>
+                  <p><a href="#" onclick="mostrarTodosLosProductos()">Ver todos los productos disponibles</a></p>
+                </div>
+              </div>
+            `;
+          } else {
+            // Error de conexión u otro tipo de error
+            if (tituloSeccion) tituloSeccion.textContent = 'Error en la búsqueda';
+            document.getElementById('productosContainer').innerHTML = `
+              <div class="col-12 text-center">
+                <div class="alert alert-danger">
+                  <i class="bi bi-exclamation-triangle"></i>
+                  <h5>Error de conexión</h5>
+                  <p>${error.message}</p>
+                  <p><a href="#" onclick="mostrarTodosLosProductos()">Ver productos locales</a></p>
+                </div>
+              </div>
+            `;
+          }
+        } finally {
+          btnBuscar.innerHTML = originalHTML;
+          btnBuscar.disabled = false;
+        }
+      }
+
+      // Función para mostrar todos los productos
+      function mostrarTodosLosProductos() {
+        const tituloSeccion = document.getElementById('tituloSeccion');
+        if (tituloSeccion) tituloSeccion.textContent = 'Nuestros productos';
+        document.getElementById('buscadorInput').value = '';
+        renderizarProductos(productosDefault);
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        actualizarCarrito();
+        renderizarProductos(productosDefault);
+        document.getElementById('btnBuscar').addEventListener('click', manejarBusqueda);
+        document.getElementById('buscadorInput').addEventListener('keypress', function(e) {
+          if (e.key === 'Enter') {
+            manejarBusqueda();
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
