@@ -1,0 +1,78 @@
+<div class="container mt-4">
+  <h2 class="mb-4"><i class="bi bi-cart-fill"></i> Tu carrito</h2>
+
+  <!-- Si no hay productos -->
+  <div *ngIf="productos.length === 0" class="alert alert-info text-center">
+    No tienes productos en el carrito.
+  </div>
+
+  <!-- Si hay productos -->
+  <div *ngIf="productos.length > 0">
+    <div class="list-group">
+      <div
+        *ngFor="let producto of productos; let i = index"
+        class="list-group-item d-flex align-items-center justify-content-between"
+      >
+        <!-- Imagen y datos -->
+        <div class="d-flex align-items-center gap-3">
+          <img
+            [src]="producto.imagen"
+            alt="{{ producto.nombre }}"
+            width="70"
+            height="70"
+            class="rounded"
+          />
+          <div>
+            <h5 class="mb-1">{{ producto.nombre }}</h5>
+
+            <!-- Selector de talla -->
+            <div>
+              <label class="form-label small mb-1">Talla:</label>
+              <select
+                class="form-select form-select-sm"
+                [(ngModel)]="producto.tallaSeleccionada"
+                (change)="cambiarTalla(i, producto.tallaSeleccionada)"
+                style="width: 120px"
+              >
+                <option *ngFor="let talla of producto.tallas" [value]="talla">
+                  {{ talla }}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cantidad -->
+        <div>
+          <input
+            type="number"
+            class="form-control"
+            style="width: 80px"
+            [value]="producto.cantidad || 1"
+            (change)="cambiarCantidad(i, $event)"
+            min="1"
+          />
+        </div>
+
+        <!-- Precio -->
+        <div>
+          <strong>${{ producto.precio * (producto.cantidad || 1) }}</strong>
+        </div>
+
+        <!-- Botón eliminar -->
+        <button class="btn btn-danger btn-sm" (click)="eliminarProducto(i)">
+          <i class="bi bi-trash-fill"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Total -->
+    <div class="mt-4 text-end">
+      <h4>
+        Total:
+        <span class="text-success"> ${{ calcularTotal() }} </span>
+      </h4>
+      <button class="btn btn-success mt-2" [routerLink]="['/realizar-compra']">Finalizar compra</button>
+    </div>
+  </div>
+</div>

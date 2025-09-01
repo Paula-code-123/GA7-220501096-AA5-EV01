@@ -1,0 +1,100 @@
+<div class="card shadow p-5" style="width: 30rem">
+  <div class="text-center mb-4">
+    <img src="assets/logo.webp" alt="Logo Sara Store" style="max-width: 100px" class="mb-3" />
+    <h4 class="fw-bold text-primary">Elige tu método de pago</h4>
+  </div>
+
+  <!-- Botones de selección -->
+  <div class="d-grid gap-3 mb-4">
+    <button class="btn btn-primary btn-lg" (click)="seleccionarMetodo('tarjeta')">
+      <i class="bi bi-credit-card"></i> Pagar con tarjeta
+    </button>
+    <button class="btn btn-warning btn-lg" (click)="seleccionarMetodo('nequi')">
+      Pagar con Nequi
+    </button>
+    <button class="btn btn-outline-secondary btn-lg" (click)="seleccionarMetodo('contraentrega')">
+      <i class="bi bi-cash"></i> Pagar contraentrega
+    </button>
+  </div>
+
+  <!-- Formulario tarjeta -->
+  <div *ngIf="metodoSeleccionado === 'tarjeta' && !pagoExitoso">
+    <h5 class="text-center mb-3">Pago con tarjeta</h5>
+    <form [formGroup]="formTarjeta" (ngSubmit)="pagarConTarjeta()">
+      <div class="mb-3">
+        <label class="form-label">Número de tarjeta</label>
+        <input type="text" formControlName="numeroTarjeta" class="form-control"
+               placeholder="1234567812345678" maxlength="16" />
+        <div *ngIf="formTarjeta.get('numeroTarjeta')?.invalid && formTarjeta.get('numeroTarjeta')?.touched"
+             class="text-danger small">
+          Número inválido (16 dígitos).
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Nombre en la tarjeta</label>
+        <input type="text" formControlName="nombre" class="form-control" />
+        <div *ngIf="formTarjeta.get('nombre')?.invalid && formTarjeta.get('nombre')?.touched"
+             class="text-danger small">
+          Nombre requerido.
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col">
+          <label class="form-label">Vencimiento</label>
+          <input type="text" formControlName="vencimiento" class="form-control"
+                 placeholder="MM/AA" maxlength="5" />
+          <div *ngIf="formTarjeta.get('vencimiento')?.invalid && formTarjeta.get('vencimiento')?.touched"
+               class="text-danger small">
+            Formato inválido (MM/AA).
+          </div>
+        </div>
+        <div class="col">
+          <label class="form-label">CVV</label>
+          <input type="text" formControlName="cvv" class="form-control" maxlength="4" />
+          <div *ngIf="formTarjeta.get('cvv')?.invalid && formTarjeta.get('cvv')?.touched"
+               class="text-danger small">
+            CVV inválido.
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-success w-100">Pagar</button>
+    </form>
+  </div>
+
+  <!-- Confirmación pago tarjeta -->
+  <div *ngIf="pagoExitoso" class="alert alert-success text-center">
+    <h5 class="mb-3">¡Pago exitoso!</h5>
+    <p>Tu pago ha sido procesado correctamente.<br />Pronto recibirás la confirmación de tu pedido.</p>
+    <a href="paginaPrincipal.html" class="btn btn-primary mt-2">Volver al inicio</a>
+  </div>
+
+  <!-- Pago con Nequi -->
+  <div *ngIf="metodoSeleccionado === 'nequi' && !pagoNequiConfirmado">
+    <h5 class="text-center mb-3">Pago con Nequi</h5>
+    <p>
+      Realiza una transferencia al número <strong>300 123 4567</strong> y envía el comprobante al WhatsApp
+      <a href="https://wa.me/573001234567" target="_blank">+57 300 123 4567</a>.
+    </p>
+    <button class="btn btn-success w-100 mt-3" (click)="confirmarNequi()">Ya pagué</button>
+  </div>
+
+  <!-- Confirmación Nequi -->
+  <div *ngIf="pagoNequiConfirmado" class="alert alert-success text-center">
+    <h5 class="mb-3">¡Pago registrado!</h5>
+    <p>Hemos recibido tu comprobante.<br />Pronto te contactaremos para confirmar tu pedido.</p>
+    <a href="/home" class="btn btn-primary mt-2">Volver al inicio</a>
+  </div>
+
+  <!-- Contraentrega -->
+  <div *ngIf="pedidoContraentrega" class="alert alert-success text-center">
+    <h5 class="mb-3">¡Pedido registrado!</h5>
+    <p>
+      Tu pedido ha sido registrado exitosamente.<br />
+      Pronto te contactaremos para la entrega y pago contraentrega.
+    </p>
+    <a href="/home" class="btn btn-primary mt-2">Volver al inicio</a>
+  </div>
+</div>
+
