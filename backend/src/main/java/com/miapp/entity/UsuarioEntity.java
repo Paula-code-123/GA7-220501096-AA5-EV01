@@ -13,6 +13,9 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "usuario")
+/**
+ * Entidad para gestion de usuarios
+ */
 public class UsuarioEntity {
 
 	@Id

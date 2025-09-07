@@ -22,6 +22,7 @@ public class UsuarioService {
 	 */
 	@Transactional
 	public void crearUsuario(UsuarioEntity usuario) {
+		//valida si existe ya un usuario con el mismo correo
 		if (usuarioRepository.existsByCorreo(usuario.getCorreo())) {
 			throw new RuntimeException("Ya existe un usuario con ese correo.");
 		}
